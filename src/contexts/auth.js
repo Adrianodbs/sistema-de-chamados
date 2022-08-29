@@ -106,7 +106,15 @@ function AuthProvider({ children }) {
   return (
     // As duas exclamações vai converter tudo o que estiver detro para boleano
     <AuthContext.Provider
-      value={{ signed: !!user, user, loading, signUp, signOut, signIn }}
+      value={{
+        signed: !!user,
+        user,
+        loading,
+        signUp,
+        signOut,
+        signIn,
+        loadingAuth
+      }}
     >
       {children}
     </AuthContext.Provider>
