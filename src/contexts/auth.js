@@ -24,7 +24,7 @@ function AuthProvider({ children }) {
     loadStorage()
   }, [])
 
-  //Fazendo Login do usuário
+  //Fazendo login do usuario
   async function signIn(email, password) {
     setLoadingAuth(true)
 
@@ -43,25 +43,26 @@ function AuthProvider({ children }) {
         let data = {
           uid: uid,
           nome: userProfile.data().nome,
-          avatarUrl: userProfile.data.avatarUrl,
+          avatarUrl: userProfile.data().avatarUrl,
           email: value.user.email
         }
 
         setUser(data)
         storageUser(data)
         setLoadingAuth(false)
-        toast.success('Bem-vindo de volta')
+        toast.success('Bem vindo de volta!')
       })
       .catch(error => {
         console.log(error)
+        toast.error('Ops algo deu errado!')
         setLoadingAuth(false)
-        toast.error('Ops! Algo deu errado')
       })
   }
 
-  //Cadastrando um novo usuário
+  //Cadastrando um novo usuario
   async function signUp(email, password, nome) {
     setLoadingAuth(true)
+
     await firebase
       .auth()
       .createUserWithEmailAndPassword(email, password)
@@ -87,12 +88,12 @@ function AuthProvider({ children }) {
             setUser(data)
             storageUser(data)
             setLoadingAuth(false)
-            toast.success('Bem vindo a plataforma')
+            toast.success('Bem vindo a plataforma!')
           })
       })
       .catch(error => {
         console.log(error)
-        toast.error('Ops! Algo deu errado')
+        toast.error('Ops algo deu errado!')
         setLoadingAuth(false)
       })
   }
